@@ -1,13 +1,14 @@
 ---
-// var accordionContent = await Astro.glob("../content/resourcesPage/*.md");
-
+  // for json
 interface IBody{
   text: string;
   link?: string
 }
+const {heading, body} = Astro.props as { heading: string; body: IBody[];};
 
-// const {heading, body} = Astro.props as { heading: string; body: IBody[];};
-const {heading, Content} = Astro.props;
+// for markdown
+
+// const {heading, Content} = Astro.props;  
 ---
 <section>
     <div class="faq"> 
@@ -19,18 +20,17 @@ const {heading, Content} = Astro.props;
       </div>
       <div class="answer">
         {
-          
-          // body.map((item, index) => {
-          //   return(
-          //     <ul>
-          //       <li>
-          //         <a href={item.link}>
-          //           {item.text}
-          //         </a>
-          //       </li>
-          //     </ul>
-          //   )
-          // })
+          body.map((item, index) => {
+            return(
+              <ul>
+                <li>
+                  <a href={item.link}>
+                    {item.text}
+                  </a>
+                </li>
+              </ul>
+            )
+          })
         }
       </div>
     </div>
